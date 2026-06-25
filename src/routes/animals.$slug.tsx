@@ -34,9 +34,9 @@ export const Route = createFileRoute("/animals/$slug")({
 });
 
 function AnimalDetail() {
-  const { animal } = Route.useLoaderData();
+  const { animal } = Route.useLoaderData() as { animal: Animal };
   const related = animal.related
-    .map((s) => animals.find((a) => a.slug === s))
+    .map((s: string) => animals.find((a: Animal) => a.slug === s))
     .filter((a): a is NonNullable<typeof a> => Boolean(a));
 
   return (
