@@ -1,11 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, MapPin, Heart, Share2 } from "lucide-react";
-import { animals, getAnimal, STATUS_COLOR } from "@/data/animals";
+import { animals, getAnimal, STATUS_COLOR, type Animal } from "@/data/animals";
 import { AnimalCard } from "@/components/AnimalCard";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/animals/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { animal: Animal } => {
     const animal = getAnimal(params.slug);
     if (!animal) throw notFound();
     return { animal };
