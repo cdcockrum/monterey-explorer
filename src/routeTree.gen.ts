@@ -9,10 +9,52 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ScheduleRouteImport } from './routes/schedule'
+import { Route as PlanRouteImport } from './routes/plan'
+import { Route as MapRouteImport } from './routes/map'
+import { Route as LearnRouteImport } from './routes/learn'
+import { Route as KidsRouteImport } from './routes/kids'
+import { Route as GuideRouteImport } from './routes/guide'
+import { Route as ConservationRouteImport } from './routes/conservation'
 import { Route as AnimalsRouteImport } from './routes/animals'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnimalsSlugRouteImport } from './routes/animals.$slug'
 
+const ScheduleRoute = ScheduleRouteImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanRoute = PlanRouteImport.update({
+  id: '/plan',
+  path: '/plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KidsRoute = KidsRouteImport.update({
+  id: '/kids',
+  path: '/kids',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuideRoute = GuideRouteImport.update({
+  id: '/guide',
+  path: '/guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConservationRoute = ConservationRouteImport.update({
+  id: '/conservation',
+  path: '/conservation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnimalsRoute = AnimalsRouteImport.update({
   id: '/animals',
   path: '/animals',
@@ -32,34 +74,142 @@ const AnimalsSlugRoute = AnimalsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/animals': typeof AnimalsRouteWithChildren
+  '/conservation': typeof ConservationRoute
+  '/guide': typeof GuideRoute
+  '/kids': typeof KidsRoute
+  '/learn': typeof LearnRoute
+  '/map': typeof MapRoute
+  '/plan': typeof PlanRoute
+  '/schedule': typeof ScheduleRoute
   '/animals/$slug': typeof AnimalsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/animals': typeof AnimalsRouteWithChildren
+  '/conservation': typeof ConservationRoute
+  '/guide': typeof GuideRoute
+  '/kids': typeof KidsRoute
+  '/learn': typeof LearnRoute
+  '/map': typeof MapRoute
+  '/plan': typeof PlanRoute
+  '/schedule': typeof ScheduleRoute
   '/animals/$slug': typeof AnimalsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/animals': typeof AnimalsRouteWithChildren
+  '/conservation': typeof ConservationRoute
+  '/guide': typeof GuideRoute
+  '/kids': typeof KidsRoute
+  '/learn': typeof LearnRoute
+  '/map': typeof MapRoute
+  '/plan': typeof PlanRoute
+  '/schedule': typeof ScheduleRoute
   '/animals/$slug': typeof AnimalsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/animals' | '/animals/$slug'
+  fullPaths:
+    | '/'
+    | '/animals'
+    | '/conservation'
+    | '/guide'
+    | '/kids'
+    | '/learn'
+    | '/map'
+    | '/plan'
+    | '/schedule'
+    | '/animals/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/animals' | '/animals/$slug'
-  id: '__root__' | '/' | '/animals' | '/animals/$slug'
+  to:
+    | '/'
+    | '/animals'
+    | '/conservation'
+    | '/guide'
+    | '/kids'
+    | '/learn'
+    | '/map'
+    | '/plan'
+    | '/schedule'
+    | '/animals/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/animals'
+    | '/conservation'
+    | '/guide'
+    | '/kids'
+    | '/learn'
+    | '/map'
+    | '/plan'
+    | '/schedule'
+    | '/animals/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnimalsRoute: typeof AnimalsRouteWithChildren
+  ConservationRoute: typeof ConservationRoute
+  GuideRoute: typeof GuideRoute
+  KidsRoute: typeof KidsRoute
+  LearnRoute: typeof LearnRoute
+  MapRoute: typeof MapRoute
+  PlanRoute: typeof PlanRoute
+  ScheduleRoute: typeof ScheduleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/schedule': {
+      id: '/schedule'
+      path: '/schedule'
+      fullPath: '/schedule'
+      preLoaderRoute: typeof ScheduleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plan': {
+      id: '/plan'
+      path: '/plan'
+      fullPath: '/plan'
+      preLoaderRoute: typeof PlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kids': {
+      id: '/kids'
+      path: '/kids'
+      fullPath: '/kids'
+      preLoaderRoute: typeof KidsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guide': {
+      id: '/guide'
+      path: '/guide'
+      fullPath: '/guide'
+      preLoaderRoute: typeof GuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conservation': {
+      id: '/conservation'
+      path: '/conservation'
+      fullPath: '/conservation'
+      preLoaderRoute: typeof ConservationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/animals': {
       id: '/animals'
       path: '/animals'
@@ -98,6 +248,13 @@ const AnimalsRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnimalsRoute: AnimalsRouteWithChildren,
+  ConservationRoute: ConservationRoute,
+  GuideRoute: GuideRoute,
+  KidsRoute: KidsRoute,
+  LearnRoute: LearnRoute,
+  MapRoute: MapRoute,
+  PlanRoute: PlanRoute,
+  ScheduleRoute: ScheduleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
