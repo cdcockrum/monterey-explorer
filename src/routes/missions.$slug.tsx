@@ -31,6 +31,7 @@ function MissionDetail() {
         objective={mission.objective}
         duration={mission.duration}
         difficulty={mission.difficulty}
+        image={mission.image}
       />
 
       <section className="mx-auto max-w-5xl px-6 py-16">
