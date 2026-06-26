@@ -1,84 +1,99 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Clock, Compass } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Compass, Clock, ArrowRight } from "lucide-react";
 import { missions } from "@/data/missions";
-import {
-  CTAButton,
-  MissionChecklist,
-  OceanInsight,
-} from "@/components/design";
+import { CTAButton, GlassCard } from "@/components/design";
 
-export const Route = createFileRoute("/missions/$slug")({
-  loader: ({ params }): { mission: Mission } => {
-    const mission = getMission(params.slug);
-    if (!mission) throw notFound();
-    return { mission };
-  },
-  component: MissionDetail,
+export const Route = createFileRoute("/missions")({
+  component: MissionsPage,
 });
 
-function MissionDetail() {
-  const { mission } = Route.useLoaderData() as { mission: Mission };
+function MissionsPage() {
+  const featured = missions[0];
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
-      <section className="mx-auto max-w-5xl px-6 py-16">
-        <Link
-          to="/missions"
-          className="inline-flex items-center gap-2 text-sm text-cyan-300 hover:underline"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to missions
-        </Link>
-
-        <div className="mt-10">
+      <section className="mx-auto max-w-7xl px-6 py-24">
+        <div className="max-w-3xl">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
-            {mission.category}
+            Ocean Missions
           </p>
+
           <h1 className="mt-3 text-5xl font-bold tracking-tight md:text-7xl">
-            {mission.title}
+            Explore Like a Marine Biologist
           </h1>
+
           <p className="mt-6 text-xl leading-9 text-slate-300">
-            {mission.objective}
+            Missions transform your visit into guided observation. Instead of
+            simply reading signs, you'll investigate animal behavior and
+            discover the science behind Monterey Bay's remarkable ecosystem.
           </p>
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-300">
-          <span className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-2">
-            <Clock className="mr-2 inline h-4 w-4 text-cyan-300" />
-            {mission.duration}
-          </span>
-          <span className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-2">
-            <Compass className="mr-2 inline h-4 w-4 text-cyan-300" />
-            {mission.difficulty}
-          </span>
-        </div>
+        {featured && (
+          <GlassCard className="mt-16 p-8">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+              <div className="max-w-2xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
+                  Featured Mission
+                </p>
 
-        <section className="mt-14 rounded-3xl border border-white/10 bg-white/[0.05] p-6 md:p-8">
-          <h2 className="text-3xl font-bold">Mission Progress</h2>
-        
-          <div className="mt-8">
-            <MissionChecklist steps={mission.steps} />
-          </div>
-        </section>
+                <h2 className="mt-3 text-4xl font-bold">
+                  {featured.title}
+                </h2>
 
-        <section className="mt-10">
-          <OceanInsight>{mission.completionMessage}</OceanInsight>
-        </section>
+                <p className="mt-4 text-slate-300">
+                  {featured.objective}
+                </p>
 
-        <div className="mt-10 flex flex-wrap gap-3">
-          {mission.animalSlug && (
-            <Link
-              to="/animals/$slug"
-              params={{ slug: mission.animalSlug }}
-              className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-200"
-            >
-              View Related Animal
-            </Link>
-          )}
+                <div className="mt-6 flex flex-wrap gap-3 text-sm">
+                  <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
+                    <Clock className="mr-2 inline h-4 w-4 text-cyan-300" />
+                    {featured.duration}
+                  </span>
 
-          <CTAButton to="/missions" variant="secondary">
-            Choose Another Mission
-          </CTAButton>
+                  <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
+                    <Compass className="mr-2 inline h-4 w-4 text-cyan-300" />
+                    {featured.difficulty}
+                  </span>
+                </div>
+              </div>
+
+              <CTAButton
+                to="/missions/$slug"
+                params={{ slug: featured.slug }}
+              >
+                Start Mission
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </CTAButton>
+            </div>
+          </GlassCard>
+        )}
+
+        <div className="mt-16 grid gap-6 md:grid-cols-2">
+          {missions.map((mission) => (
+            <GlassCard key={mission.slug} className="p-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">
+                {mission.category}
+              </p>
+
+              <h3 className="mt-3 text-2xl font-bold">
+                {mission.title}
+              </h3>
+
+              <p className="mt-3 text-slate-300">
+                {mission.objective}
+              </p>
+
+              <Link
+                to="/missions/$slug"
+                params={{ slug: mission.slug }}
+                className="mt-6 inline-flex items-center font-semibold text-cyan-300 hover:underline"
+              >
+                Begin Mission
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </GlassCard>
+          ))}
         </div>
       </section>
     </main>
