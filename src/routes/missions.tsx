@@ -71,9 +71,13 @@ function MissionsPage() {
             </div>
 
             <div className="mt-8">
-              <CTAButton to="/missions/$slug" params={{ slug: featured.slug }}>
+              <Link
+                to="/missions/$slug"
+                params={{ slug: featured.slug }}
+                className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-200"
+              >
                 Start Mission
-              </CTAButton>
+              </Link>
             </div>
           </div>
 
