@@ -13,6 +13,7 @@ export type Mission = {
   difficulty: string;
   completionMessage: string;
   animalSlug?: string;
+  image: string;
   steps: MissionStep[];
 };
 
