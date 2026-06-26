@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Clock, Compass } from "lucide-react";
-import { getMission, type Mission } from "@/data/missions";
+import { missions } from "@/data/missions";
 import {
   CTAButton,
   MissionChecklist,
