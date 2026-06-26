@@ -1,7 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, CheckCircle2, Circle, Clock, Compass } from "lucide-react";
 import { getMission, type Mission } from "@/data/missions";
-import { CTAButton, OceanInsight } from "@/components/design";
+import {
+  CTAButton,
+  MissionChecklist,
+  OceanInsight,
+} from "@/components/design";
 
 export const Route = createFileRoute("/missions/$slug")({
   loader: ({ params }): { mission: Mission } => {
@@ -50,28 +54,10 @@ function MissionDetail() {
         </div>
 
         <section className="mt-14 rounded-3xl border border-white/10 bg-white/[0.05] p-6 md:p-8">
-          <h2 className="text-3xl font-bold">Mission Steps</h2>
-
-          <div className="mt-8 space-y-5">
-            {mission.steps.map((step, index) => (
-              <div
-                key={step.title}
-                className="flex gap-4 rounded-2xl border border-white/10 bg-slate-900/70 p-5"
-              >
-                {index === 0 ? (
-                  <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-cyan-300" />
-                ) : (
-                  <Circle className="mt-1 h-6 w-6 shrink-0 text-slate-500" />
-                )}
-
-                <div>
-                  <h3 className="text-xl font-semibold">{step.title}</h3>
-                  <p className="mt-2 leading-7 text-slate-300">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <h2 className="text-3xl font-bold">Mission Progress</h2>
+        
+          <div className="mt-8">
+            <MissionChecklist steps={mission.steps} />
           </div>
         </section>
 
