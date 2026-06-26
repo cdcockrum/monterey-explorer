@@ -37,6 +37,7 @@ export function MissionChecklist({
     [progress, steps.length]
   );
   const isComplete = progress === steps.length;
+  const reward = achievements["sea-otter-detective"];
 
   return (
     <div>
@@ -90,18 +91,32 @@ export function MissionChecklist({
       </div>
 
       {isComplete && (
-        <div className="mt-8 rounded-3xl border border-cyan-300/30 bg-cyan-300/10 p-6">
-          <Trophy className="h-8 w-8 text-cyan-300" />
+        <div className="mt-8 rounded-3xl border border-cyan-300/30 bg-cyan-300/10 p-8 text-center">
       
-          <h3 className="mt-4 text-2xl font-bold">
-            Mission Complete
+          <Trophy className="mx-auto h-10 w-10 text-cyan-300" />
+      
+          <h3 className="mt-5 text-3xl font-bold">
+            Mission Complete!
           </h3>
       
-          <p className="mt-3 text-slate-300">
-            You completed every observation step and earned the Sea Otter Detective badge.
+          <div className="mt-6 text-7xl">
+            {reward.badge}
+          </div>
+      
+          <p className="mt-4 text-2xl font-semibold">
+            {reward.title}
           </p>
+      
+          <p className="mt-2 text-xl font-bold text-cyan-300">
+            +{reward.xp} XP Earned
+          </p>
+      
+          <p className="mt-5 text-slate-300">
+            Outstanding work! You've completed every observation and earned a new badge.
+          </p>
+      
         </div>
       )}
-    </div>
+</div>
   );
 }
