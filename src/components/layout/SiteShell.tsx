@@ -1,6 +1,19 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
-import { Fish, Map, CalendarDays, Sparkles, Leaf, GraduationCap, Heart, Menu, Moon, Sun, Waves } from "lucide-react";
+import {
+  Award,
+  Fish,
+  Map,
+  CalendarDays,
+  Sparkles,
+  Leaf,
+  GraduationCap,
+  Heart,
+  Menu,
+  Moon,
+  Sun,
+  Waves,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -10,6 +23,7 @@ const NAV = [
   { to: "/conservation", label: "Conservation", icon: Leaf },
   { to: "/learn", label: "Learn", icon: GraduationCap },
   { to: "/plan", label: "Plan Visit", icon: Heart },
+  { to: "/passport", label: "Passport", icon: Award },
   { to: "/guide", label: "AI Guide", icon: Sparkles },
 ] as const;
 
