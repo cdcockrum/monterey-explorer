@@ -63,6 +63,13 @@ export function MissionHero({
 
           </div>
 
+          <a
+            href="#mission-progress"
+            className="mt-10 inline-flex rounded-full border border-cyan-300/40 bg-cyan-300/10 px-6 py-3 font-semibold text-cyan-200 transition hover:bg-cyan-300/20"
+          >
+            Begin Mission ↓
+          </a>
+
           {children && (
             <div className="mt-10">
               {children}
