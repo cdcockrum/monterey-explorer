@@ -1,3 +1,2 @@
 export * from "./FeatureCard";
-export * from "./GlassCard";
-export * from "./SectionTitle";
+export * from "./Hero";
