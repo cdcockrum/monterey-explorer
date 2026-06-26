@@ -74,8 +74,6 @@ function MissionDetail() {
             >
               View Related Animal
             </Link>
-              View Related Animal
-            </CTAButton>
           )}
 
           <CTAButton to="/missions" variant="secondary">
