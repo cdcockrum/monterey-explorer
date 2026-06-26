@@ -5,3 +5,4 @@ export * from "./SectionTitle";
 export * from "./CTAButton";
 export * from "./OceanInsight";
 export * from "./PageSection";
+export * from "./MissionChecklist";
