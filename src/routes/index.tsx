@@ -5,6 +5,7 @@ import { animals } from "@/data/animals";
 import { AnimalCard } from "@/components/AnimalCard";
 import { useMemo, useState } from "react";
 import { Hero, CTAButton } from "@/components/design";
+import { Search, Fish, Map, Heart, CalendarDays, ArrowRight, Clock, Leaf, Sparkles, Compass } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -145,6 +146,7 @@ function Home() {
           </div>
         </div>
       </section>
+      
       {/* Ocean Ambassador */}
       <section className="bg-slate-900 px-6 py-28 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -187,6 +189,47 @@ function Home() {
           </Link>
         </div>
       </section>
+      
+      {/* Ocean Missions */}
+      <section className="bg-slate-950 px-6 py-28 text-white">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
+              Ocean Missions
+            </div>
+            <h2 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl">
+              Explore like a marine biologist.
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-slate-300">
+              Guided missions turn your visit into active observation. Watch animal
+              behavior, connect species to ecosystems, and leave with one memorable
+              ocean insight.
+            </p>
+          </div>
+      
+          <div className="mt-12 rounded-[2rem] border border-cyan-300/20 bg-cyan-300/10 p-8 md:p-10">
+            <Compass className="h-8 w-8 text-cyan-300" />
+      
+            <div className="mt-6 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+              Featured Mission
+            </div>
+      
+            <h3 className="mt-3 text-4xl font-bold">Sea Otter Detective</h3>
+      
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+              Observe sea otters closely and discover why one small predator can help
+              protect an entire underwater forest.
+            </p>
+      
+            <div className="mt-8">
+              <CTAButton to="/missions/sea-otter-detective">
+                Start Mission
+              </CTAButton>
+            </div>
+          </div>
+        </div>
+      </section>
+            
 
       {/* Exhibits */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 mt-24">
