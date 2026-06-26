@@ -21,7 +21,7 @@ export function Hero({
   return (
     <section
       className={cn(
-        "relative isolate flex min-h-[92vh] items-end overflow-hidden bg-slate-950 text-white"
+        "relative isolate flex min-h-[92vh] items-end overflow-hidden bg-slate-950 text-white",
         className
       )}
     >
