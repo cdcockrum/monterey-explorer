@@ -49,7 +49,10 @@ function MissionDetail() {
           <h2 className="text-3xl font-bold">Mission Progress</h2>
 
           <div className="mt-8">
-            <MissionChecklist steps={mission.steps} />
+            <MissionChecklist
+              steps={mission.steps}
+              missionSlug={mission.slug}
+            />
           </div>
         </section>
 
