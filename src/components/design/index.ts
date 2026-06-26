@@ -6,3 +6,4 @@ export * from "./CTAButton";
 export * from "./OceanInsight";
 export * from "./PageSection";
 export * from "./MissionChecklist";
+export * from "./MissionHero";
