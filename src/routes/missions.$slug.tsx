@@ -42,13 +42,10 @@ function MissionDetail() {
         Back to Missions
       </Link>
 
-      <section className="mt-14 rounded-3xl border border-white/10 bg-white/5 p-8">
-        <h2 className="text-3xl font-bold">Mission Progress</h2>
-
-        <div className="mt-8">
-          <MissionChecklist steps={mission.steps} />
-        </div>
-      </section>
+      <section
+        id="mission-progress"
+        className="mt-14 rounded-3xl border border-white/10 bg-white/5 p-8"
+      >
 
       <section className="mt-10">
         <OceanInsight>{mission.completionMessage}</OceanInsight>
