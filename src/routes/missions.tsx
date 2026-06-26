@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Compass, Clock, ArrowRight } from "lucide-react";
 import { missions } from "@/data/missions";
-import { CTAButton, GlassCard } from "@/components/design";
+import { GlassCard } from "@/components/design";
 
 export const Route = createFileRoute("/missions")({
   component: MissionsPage,
