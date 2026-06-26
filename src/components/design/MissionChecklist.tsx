@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { CheckCircle2, Circle, Trophy } from "lucide-react";
-
+import { achievements } from "@/data/achievements";
 export function MissionChecklist({
   steps,
 }: {
@@ -92,10 +92,13 @@ export function MissionChecklist({
       {isComplete && (
         <div className="mt-8 rounded-3xl border border-cyan-300/30 bg-cyan-300/10 p-6">
           <Trophy className="h-8 w-8 text-cyan-300" />
-          <h3 className="mt-4 text-2xl font-bold">Mission Complete</h3>
+      
+          <h3 className="mt-4 text-2xl font-bold">
+            Mission Complete
+          </h3>
+      
           <p className="mt-3 text-slate-300">
-            You completed every observation step and earned the Sea Otter
-            Detective badge.
+            You completed every observation step and earned the Sea Otter Detective badge.
           </p>
         </div>
       )}
