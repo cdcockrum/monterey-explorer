@@ -73,29 +73,78 @@ function Home() {
       </Hero>
 
       {/* Today */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 -mt-16 sm:-mt-24 relative z-10">
-        <div className="rounded-3xl border border-border/60 bg-card shadow-xl p-6 sm:p-8">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Today at the Aquarium</div>
-              <h2 className="mt-1 font-display text-2xl sm:text-3xl">Upcoming highlights</h2>
+      <section className="bg-slate-950 px-6 py-28 text-white">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-10">
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
+              Today at the Aquarium
             </div>
-            <Link to="/schedule" className="text-sm font-medium text-primary hover:underline">Full schedule →</Link>
+            <h2 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl">
+              Don’t miss this.
+            </h2>
           </div>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {HIGHLIGHTS.map((h) => (
-              <div key={h.title} className="rounded-2xl border border-border/60 bg-background/60 p-4 hover:border-primary/40 transition">
-                <div className="inline-flex items-center gap-1.5 text-xs text-primary font-medium">
-                  <Clock className="h-3.5 w-3.5" /> {h.time}
-                </div>
-                <div className="mt-2 font-medium">{h.title}</div>
-                <div className="text-sm text-muted-foreground">{h.where}</div>
+      
+          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="rounded-3xl border border-cyan-300/20 bg-cyan-300/10 p-8 md:p-10">
+              <div className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+                Staff Favorite
               </div>
-            ))}
+      
+              <h3 className="mt-4 text-4xl font-bold md:text-5xl">
+                Sea Otter Feeding
+              </h3>
+      
+              <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                <div>
+                  <div className="text-sm text-slate-400">Time</div>
+                  <div className="mt-1 text-xl font-semibold">10:30 AM</div>
+                </div>
+                <div>
+                  <div className="text-sm text-slate-400">Location</div>
+                  <div className="mt-1 text-xl font-semibold">Sea Otter Exhibit</div>
+                </div>
+                <div>
+                  <div className="text-sm text-slate-400">Walk</div>
+                  <div className="mt-1 text-xl font-semibold">6 minutes</div>
+                </div>
+              </div>
+      
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+                A visitor favorite and a powerful conservation story. Watch how animal care,
+                rescue work, and kelp forest health connect through one of Monterey Bay’s
+                most beloved animals.
+              </p>
+      
+              <div className="mt-8">
+                <CTAButton to="/schedule">Build My Route</CTAButton>
+              </div>
+            </div>
+      
+            <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6">
+              <div className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-400">
+                More Today
+              </div>
+      
+              <div className="mt-5 space-y-4">
+                {HIGHLIGHTS.slice(1).map((h) => (
+                  <Link
+                    key={h.title}
+                    to="/schedule"
+                    className="block rounded-2xl border border-white/10 bg-slate-900/70 p-4 transition hover:border-cyan-300/40"
+                  >
+                    <div className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300">
+                      <Clock className="h-4 w-4" />
+                      {h.time}
+                    </div>
+                    <div className="mt-2 font-semibold">{h.title}</div>
+                    <div className="text-sm text-slate-400">{h.where}</div>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
       {/* Featured animals */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 mt-24">
         <div className="flex items-end justify-between gap-4">
