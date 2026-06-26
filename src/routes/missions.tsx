@@ -1,11 +1,20 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useMatchRoute } from "@tanstack/react-router";
 import { Compass, Clock, ArrowRight } from "lucide-react";
 import { missions } from "@/data/missions";
 import { GlassCard } from "@/components/design";
 
 export const Route = createFileRoute("/missions")({
-  component: MissionsPage,
+  component: MissionsLayout,
 });
+
+function MissionsLayout() {
+  const matchRoute = useMatchRoute();
+  const isChild = matchRoute({ to: "/missions/$slug" });
+
+  if (isChild) return <Outlet />;
+
+  return <MissionsPage />;
+}
 
 function MissionsPage() {
   const featured = missions[0];
