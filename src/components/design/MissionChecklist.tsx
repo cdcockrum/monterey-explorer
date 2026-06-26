@@ -1,6 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckCircle2, Circle, Trophy } from "lucide-react";
 import { achievements } from "@/data/achievements";
+import { completeMission } from "@/lib/passport";
+
 export function MissionChecklist({
   steps,
   missionSlug,
@@ -39,6 +41,11 @@ export function MissionChecklist({
     [progress, steps.length]
   );
   const isComplete = progress === steps.length;
+  useEffect(() => {
+    if (isComplete) {
+      completeMission(missionSlug);
+    }
+  }, [isComplete, missionSlug]);
   const reward = achievements[missionSlug];
 
   return (
