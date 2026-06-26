@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CheckCircle2, Circle, Trophy } from "lucide-react";
 import { achievements } from "@/data/achievements";
 import { completeMission } from "@/lib/passport";
