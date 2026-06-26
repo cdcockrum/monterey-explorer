@@ -3,8 +3,10 @@ import { CheckCircle2, Circle, Trophy } from "lucide-react";
 import { achievements } from "@/data/achievements";
 export function MissionChecklist({
   steps,
+  missionSlug,
 }: {
   steps: { title: string; description: string }[];
+  missionSlug: string;
 }) {
   const storageKey = `mission-${steps[0]?.title}`;
 
@@ -37,7 +39,7 @@ export function MissionChecklist({
     [progress, steps.length]
   );
   const isComplete = progress === steps.length;
-  const reward = achievements["sea-otter-detective"];
+  const reward = achievements[missionSlug];
 
   return (
     <div>
