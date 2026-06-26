@@ -145,19 +145,46 @@ function Home() {
           </div>
         </div>
       </section>
-      {/* Featured animals */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 mt-24">
-        <div className="flex items-end justify-between gap-4">
+      {/* Ocean Ambassador */}
+      <section className="bg-slate-900 px-6 py-28 text-white">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
-            <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Featured</div>
-            <h2 className="mt-1 font-display text-3xl sm:text-4xl">Meet the residents</h2>
+            <div className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
+              Today’s Ocean Ambassador
+            </div>
+      
+            <h2 className="mt-3 text-4xl font-bold tracking-tight md:text-6xl">
+              Sea Otter
+            </h2>
+      
+            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
+              A tiny predator with an enormous role. Discover how sea otters help
+              protect kelp forests, support biodiversity, and connect visitors to
+              Monterey Bay’s conservation story.
+            </p>
+      
+            <div className="mt-8">
+              <CTAButton to="/animals/sea-otter">
+                Explore the Sea Otter
+              </CTAButton>
+            </div>
           </div>
-          <Link to="/animals" className="text-sm font-medium text-primary hover:underline">All animals →</Link>
-        </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((a, i) => (
-            <AnimalCard key={a.slug} animal={a} priority={i < 2} />
-          ))}
+      
+          <Link
+            to="/animals/sea-otter"
+            className="group overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.05] p-4 transition hover:border-cyan-300/40"
+          >
+            <img
+              src={featured[0]?.image}
+              alt="Sea otter"
+              className="aspect-[4/3] w-full rounded-[1.5rem] object-cover transition duration-500 group-hover:scale-[1.03]"
+            />
+      
+            <div className="p-4">
+              <div className="text-sm text-cyan-300">Keystone Species</div>
+              <div className="mt-1 text-2xl font-bold">Protects kelp forests</div>
+            </div>
+          </Link>
         </div>
       </section>
 
