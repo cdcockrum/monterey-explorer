@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, CheckCircle2, Circle, Clock, Compass } from "lucide-react";
+import { ArrowLeft, Clock, Compass } from "lucide-react";
 import { getMission, type Mission } from "@/data/missions";
 import {
   CTAButton,
