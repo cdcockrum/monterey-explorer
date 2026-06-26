@@ -116,27 +116,31 @@ function AnimalDetail() {
 
 <>
     {isSeaOtter && (
-    <section className="relative z-10 mx-auto -mt-20 max-w-7xl px-6">
-      <OceanInsight>
-        Sea otters are a <strong>keystone species</strong>. Their daily hunt for
-        sea urchins helps protect giant kelp forests, allowing hundreds of other
-        marine species to thrive.
-      </OceanInsight>
-    </section>
-  )}
-
-  <section className="relative z-10 mx-auto mt-8 max-w-7xl px-6">
-        <div className="grid gap-4 rounded-3xl border border-white/10 bg-white/[0.06] p-6 shadow-2xl backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4">
-          <Fact label="Habitat" value={animal.habitat} />
-          <Fact label="Lifespan" value={animal.lifespan} />
-          <Fact label="Size" value={animal.size} />
-          <Fact label="Diet" value={animal.diet} />
-          <Fact label="Range" value={animal.range} />
-          <Fact label="Family" value={animal.family} />
-          <Fact label="Weight" value={animal.weight} />
-          <Fact label="Exhibit" value={animal.exhibit} icon />
-        </div>
+      <section className="relative z-10 mx-auto -mt-20 max-w-7xl px-6">
+        <OceanInsight>
+          Sea otters are a <strong>keystone species</strong>. Their daily hunt for
+          sea urchins helps protect giant kelp forests, allowing hundreds of other
+          marine species to thrive.
+        </OceanInsight>
       </section>
+    )}
+    
+    <section
+      className={`relative z-10 mx-auto max-w-7xl px-6 ${
+        isSeaOtter ? "mt-8" : "-mt-20"
+      }`}
+    >
+      <div className="grid gap-4 rounded-3xl border border-white/10 bg-white/[0.06] p-6 shadow-2xl backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4">
+        <Fact label="Habitat" value={animal.habitat} />
+        <Fact label="Lifespan" value={animal.lifespan} />
+        <Fact label="Size" value={animal.size} />
+        <Fact label="Diet" value={animal.diet} />
+        <Fact label="Range" value={animal.range} />
+        <Fact label="Family" value={animal.family} />
+        <Fact label="Weight" value={animal.weight} />
+        <Fact label="Exhibit" value={animal.exhibit} icon />
+      </div>
+    </section>
   </>
 
       <section className="mx-auto mt-16 grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_360px]">
