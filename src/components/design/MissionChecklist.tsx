@@ -10,7 +10,7 @@ export function MissionChecklist({
   steps: { title: string; description: string }[];
   missionSlug: string;
 }) {
-  const storageKey = `mission-${steps[0]?.title}`;
+  const storageKey = `mission-${missionSlug}`;
 
   const [completed, setCompleted] = useState<boolean[]>(() => {
     const saved = localStorage.getItem(storageKey);
