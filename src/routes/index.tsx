@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Search, Fish, Map, Heart, CalendarDays, ArrowRight, Clock, Leaf, Sparkles } from "lucide-react";
 import hero from "@/assets/hero-kelp.jpg";
 import { animals } from "@/data/animals";
 import { AnimalCard } from "@/components/AnimalCard";
