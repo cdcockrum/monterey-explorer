@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CheckCircle2, Circle, Trophy } from "lucide-react";
 
 export function MissionChecklist({
@@ -6,9 +6,24 @@ export function MissionChecklist({
 }: {
   steps: { title: string; description: string }[];
 }) {
-  const [completed, setCompleted] = useState<boolean[]>(
-    steps.map(() => false)
-  );
+  const storageKey = `mission-${steps[0]?.title}`;
+
+  const [completed, setCompleted] = useState<boolean[]>(() => {
+    const saved = localStorage.getItem(storageKey);
+
+    if (saved) {
+      return JSON.parse(saved);
+    }
+  
+    return steps.map(() => false);
+  });
+  
+    useEffect(() => {
+    localStorage.setItem(
+      storageKey,
+      JSON.stringify(completed)
+    );
+  }, [completed]);
 
   const toggle = (index: number) => {
     setCompleted((current) =>
