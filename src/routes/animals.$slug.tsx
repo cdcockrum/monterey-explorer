@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { animals, getAnimal, STATUS_COLOR, type Animal } from "@/data/animals";
 import { AnimalCard } from "@/components/AnimalCard";
+import { OceanInsight } from "@/components/design";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/animals/$slug")({
@@ -113,7 +114,18 @@ function AnimalDetail() {
         </div>
       </header>
 
-      <section className="relative z-10 mx-auto -mt-20 max-w-7xl px-6">
+<>
+    {isSeaOtter && (
+    <section className="relative z-10 mx-auto -mt-20 max-w-7xl px-6">
+      <OceanInsight>
+        Sea otters are a <strong>keystone species</strong>. Their daily hunt for
+        sea urchins helps protect giant kelp forests, allowing hundreds of other
+        marine species to thrive.
+      </OceanInsight>
+    </section>
+  )}
+
+  <section className="relative z-10 mx-auto mt-8 max-w-7xl px-6">
         <div className="grid gap-4 rounded-3xl border border-white/10 bg-white/[0.06] p-6 shadow-2xl backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4">
           <Fact label="Habitat" value={animal.habitat} />
           <Fact label="Lifespan" value={animal.lifespan} />
@@ -125,6 +137,7 @@ function AnimalDetail() {
           <Fact label="Exhibit" value={animal.exhibit} icon />
         </div>
       </section>
+  </>
 
       <section className="mx-auto mt-16 grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_360px]">
         <div className="space-y-10">
