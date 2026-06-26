@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, Circle } from "lucide-react";
+
 
 export function MissionChecklist({
   steps,
