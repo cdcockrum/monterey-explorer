@@ -4,3 +4,4 @@ export * from "./GlassCard";
 export * from "./SectionTitle";
 export * from "./CTAButton";
 export * from "./OceanInsight";
+export * from "./PageSection";
