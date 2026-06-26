@@ -28,6 +28,8 @@ export const missions: Mission[] = [
     duration: "15–20 minutes",
     difficulty: "Easy",
     animalSlug: "sea-otter",
+    image: "/images/missions/sea-otter.jpg",
+    completionMessage:
     completionMessage:
       "Excellent observation! Sea otters eat sea urchins, preventing them from destroying kelp forests. Healthy kelp forests provide food, shelter, and nursery habitat for hundreds of marine species.",
     steps: [
