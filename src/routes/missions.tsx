@@ -58,14 +58,13 @@ function MissionsPage() {
                 </div>
               </div>
 
-              <Link
-                to="/missions/$slug"
-                params={{ slug: featured.slug }}
+              <a
+                href={`/missions/${featured.slug}`}
                 className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-200"
               >
                 Start Mission
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </a>
             </div>
           </GlassCard>
         )}
@@ -85,14 +84,13 @@ function MissionsPage() {
                 {mission.objective}
               </p>
 
-              <Link
-                to="/missions/$slug"
-                params={{ slug: mission.slug }}
+              <a
+                href={`/missions/${mission.slug}`}
                 className="mt-6 inline-flex items-center font-semibold text-cyan-300 hover:underline"
               >
                 Begin Mission
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+              </a>
             </GlassCard>
           ))}
         </div>
