@@ -67,7 +67,13 @@ function MissionDetail() {
 
         <div className="mt-10 flex flex-wrap gap-3">
           {mission.animalSlug && (
-            <CTAButton to={`/animals/${mission.animalSlug}`}>
+            <Link
+              to="/animals/$slug"
+              params={{ slug: mission.animalSlug }}
+              className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-200"
+            >
+              View Related Animal
+            </Link>
               View Related Animal
             </CTAButton>
           )}
