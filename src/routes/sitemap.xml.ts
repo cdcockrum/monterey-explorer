@@ -4,7 +4,7 @@ import { animals } from "@/data/animals";
 
 const BASE_URL = "";
 
-export const Route = createFileRoute("/sitemap.xml")({
+export const Route = createFileRoute("/sitemap/xml")({
   server: {
     handlers: {
       GET: async () => {
