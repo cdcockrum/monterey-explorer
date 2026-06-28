@@ -6,6 +6,7 @@ import {
   MissionHero,
   OceanInsight,
 } from "@/components/design";
+import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/missions/$slug")({
   loader: ({ params }): { mission: Mission } => {
@@ -75,8 +76,20 @@ function MissionDetail() {
         </Link>
 
         <section
-         id="mission-progress"
-         className="scroll-mt-24 mt-14 rounded-3xl border border-white/10 bg-white/5 p-8"
+         <motion.section
+          id="mission-progress"
+          className="scroll-mt-24 mt-14 rounded-3xl border border-white/10 bg-white/5 p-8"
+        
+          initial={{ opacity: 0, y: 40 }}
+        
+          whileInView={{ opacity: 1, y: 0 }}
+        
+          viewport={{ once: true }}
+        
+          transition={{
+            duration: 0.7,
+            ease: "easeOut",
+          }}
         >
           <h2 className="text-3xl font-bold">Mission Progress</h2>
 
@@ -86,7 +99,7 @@ function MissionDetail() {
               missionSlug={mission.slug}
             />
           </div>
-        </section>
+        </motion.section>
 
         <section className="mt-10">
           <OceanInsight>{mission.completionMessage}</OceanInsight>
