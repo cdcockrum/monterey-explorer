@@ -1,12 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { getMission, type Mission } from "@/data/missions";
+import { motion } from "framer-motion";
 import {
   MissionChecklist,
   MissionHero,
   OceanInsight,
 } from "@/components/design";
-import { motion } from "framer-motion";
+
 
 export const Route = createFileRoute("/missions/$slug")({
   loader: ({ params }): { mission: Mission } => {
