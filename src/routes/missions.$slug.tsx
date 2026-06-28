@@ -75,8 +75,8 @@ function MissionDetail() {
         </Link>
 
         <section
-          id="mission-progress"
-          className="mt-14 rounded-3xl border border-white/10 bg-white/5 p-8"
+         id="mission-progress"
+         className="scroll-mt-24 mt-14 rounded-3xl border border-white/10 bg-white/5 p-8"
         >
           <h2 className="text-3xl font-bold">Mission Progress</h2>
 
