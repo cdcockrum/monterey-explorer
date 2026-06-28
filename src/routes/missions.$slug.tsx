@@ -32,7 +32,38 @@ function MissionDetail() {
         duration={mission.duration}
         difficulty={mission.difficulty}
         image={mission.image}
-      />
+      >
+        <div className="mt-10 flex flex-wrap gap-4">
+      
+          <div className="rounded-2xl bg-black/35 backdrop-blur-md px-6 py-4 border border-white/10">
+            <p className="text-xs uppercase tracking-[0.3em] text-cyan-300">
+              Mission Time
+            </p>
+            <p className="mt-1 text-xl font-semibold">
+              {mission.duration}
+            </p>
+          </div>
+      
+          <div className="rounded-2xl bg-black/35 backdrop-blur-md px-6 py-4 border border-white/10">
+            <p className="text-xs uppercase tracking-[0.3em] text-cyan-300">
+              Difficulty
+            </p>
+            <p className="mt-1 text-xl font-semibold">
+              {mission.difficulty}
+            </p>
+          </div>
+      
+          <div className="rounded-2xl bg-black/35 backdrop-blur-md px-6 py-4 border border-white/10">
+            <p className="text-xs uppercase tracking-[0.3em] text-cyan-300">
+              Category
+            </p>
+            <p className="mt-1 text-xl font-semibold">
+              {mission.category}
+            </p>
+          </div>
+      
+        </div>
+      </MissionHero>
 
       <section className="mx-auto max-w-5xl px-6 py-16">
         <Link
