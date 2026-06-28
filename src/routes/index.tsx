@@ -1,10 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, useMemo } from "react";
 import hero from "@/assets/hero-kelp.jpg";
 import { animals } from "@/data/animals";
 import { AnimalCard } from "@/components/AnimalCard";
-import { useMemo, useState } from "react";
 import { Hero, CTAButton } from "@/components/design";
-import { Search, Fish, Map, Heart, CalendarDays, ArrowRight, Clock, Leaf, Sparkles, Compass } from "lucide-react";
+import {
+  ArrowRight,
+  CalendarDays,
+  Clock,
+  Compass,
+  Fish,
+  Heart,
+  Leaf,
+  Map,
+} from "lucide-react";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,15 +52,19 @@ const EXHIBITS = [
 function Home() {
   const [q, setQ] = useState("");
   const featured = animals.slice(0, 4);
+
   const results = useMemo(() => {
-    if (!q.trim()) return [];
-    const s = q.toLowerCase();
-    return animals.filter((a) =>
-      a.name.toLowerCase().includes(s) ||
-      a.scientificName.toLowerCase().includes(s) ||
-      a.category.toLowerCase().includes(s),
-    ).slice(0, 6);
-  }, [q]);
+  if (!q.trim()) return [];
+  const s = q.toLowerCase();
+  return animals
+    .filter(
+      (a) =>
+        a.name.toLowerCase().includes(s) ||
+        a.scientificName.toLowerCase().includes(s) ||
+        a.category.toLowerCase().includes(s)
+    )
+    .slice(0, 6);
+}, [q]);
 
   return (
     <>
@@ -165,14 +179,19 @@ function Home() {
             </p>
       
             <div className="mt-8">
-              <CTAButton to="/animals/sea-otter">
+              <Link
+                to="/animals/$slug"
+                params={{ slug: "sea-otter" }}
+                className="inline-flex items-center rounded-full bg-cyan-300 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-200"
+              >
                 Explore the Sea Otter
-              </CTAButton>
+              </Link>
             </div>
           </div>
       
           <Link
-            to="/animals/sea-otter"
+            to="/animals/$slug"
+            params={{ slug: "sea-otter" }}
             className="group overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.05] p-4 transition hover:border-cyan-300/40"
           >
             <img
