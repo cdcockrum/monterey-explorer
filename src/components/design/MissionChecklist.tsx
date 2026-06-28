@@ -18,16 +18,9 @@ export function MissionChecklist({
     if (saved) {
       return JSON.parse(saved);
     }
-  
+
     return steps.map(() => false);
   });
-  
-    useEffect(() => {
-    localStorage.setItem(
-      storageKey,
-      JSON.stringify(completed)
-    );
-  }, [completed]);
 
   const toggle = (index: number) => {
     setCompleted((current) =>
@@ -36,96 +29,119 @@ export function MissionChecklist({
   };
 
   const progress = completed.filter(Boolean).length;
+
   const percent = useMemo(
     () => Math.round((progress / steps.length) * 100),
     [progress, steps.length]
   );
+
   const isComplete = progress === steps.length;
+  const reward = achievements[missionSlug];
+
   useEffect(() => {
+    localStorage.setItem(storageKey, JSON.stringify(completed));
+
     if (isComplete) {
       completeMission(missionSlug);
     }
-  }, [isComplete, missionSlug]);
-  const reward = achievements[missionSlug];
+  }, [completed, isComplete, missionSlug, storageKey]);
 
   return (
     <div>
-      <div className="mb-8">
+      <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-6">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <div className="text-sm uppercase tracking-[0.25em] text-cyan-300">
-              Progress
-            </div>
-            <div className="mt-2 text-3xl font-bold">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+              Mission Progress
+            </p>
+
+            <p className="mt-2 text-4xl font-bold">
               {progress} / {steps.length}
-            </div>
+            </p>
           </div>
 
-          <div className="text-right text-sm text-slate-400">
-            {percent}% complete
-          </div>
+          <p className="text-sm font-semibold text-cyan-300">
+            {percent}% Complete
+          </p>
         </div>
 
-        <div className="mt-5 h-3 overflow-hidden rounded-full bg-slate-800">
+        <div className="mt-6 h-4 overflow-hidden rounded-full bg-slate-800">
           <div
-            className="h-full rounded-full bg-cyan-300 transition-all duration-500"
+            className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-teal-300 transition-all duration-700"
             style={{ width: `${percent}%` }}
           />
         </div>
       </div>
 
-      <div className="space-y-4">
-        {steps.map((step, index) => (
-          <button
-            key={step.title}
-            onClick={() => toggle(index)}
-            className={`flex w-full items-start gap-4 rounded-2xl border p-5 text-left transition ${
-              completed[index]
-                ? "border-cyan-300/40 bg-cyan-300/10"
-                : "border-white/10 bg-slate-900/60 hover:border-cyan-300/30"
-            }`}
-          >
-            {completed[index] ? (
-              <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-cyan-300" />
-            ) : (
-              <Circle className="mt-1 h-6 w-6 shrink-0 text-slate-500" />
-            )}
+      <div className="mt-8 space-y-5">
+        {steps.map((step, index) => {
+          const checked = completed[index];
 
-            <div>
-              <h3 className="font-semibold">{step.title}</h3>
-              <p className="mt-2 text-slate-300">{step.description}</p>
-            </div>
-          </button>
-        ))}
+          return (
+            <button
+              key={step.title}
+              onClick={() => toggle(index)}
+              className={`group flex w-full items-start gap-5 rounded-3xl border p-6 text-left transition-all duration-300 ${
+                checked
+                  ? "border-cyan-300/40 bg-cyan-300/10 shadow-lg shadow-cyan-500/10"
+                  : "border-white/10 bg-slate-900/70 hover:-translate-y-1 hover:border-cyan-300/40"
+              }`}
+            >
+              <div className="mt-1">
+                {checked ? (
+                  <CheckCircle2 className="h-7 w-7 text-cyan-300" />
+                ) : (
+                  <Circle className="h-7 w-7 text-slate-500 transition group-hover:text-cyan-300" />
+                )}
+              </div>
+
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+                  Step {index + 1}
+                </p>
+
+                <h3 className="mt-2 text-2xl font-bold">
+                  {step.title}
+                </h3>
+
+                <p className="mt-3 leading-7 text-slate-300">
+                  {step.description}
+                </p>
+
+                <p className="mt-5 text-sm font-semibold text-cyan-300">
+                  {checked ? "✓ Completed" : "Mark Complete →"}
+                </p>
+              </div>
+            </button>
+          );
+        })}
       </div>
 
-      {isComplete && (
-        <div className="mt-8 rounded-3xl border border-cyan-300/30 bg-cyan-300/10 p-8 text-center">
-      
-          <Trophy className="mx-auto h-10 w-10 text-cyan-300" />
-      
-          <h3 className="mt-5 text-3xl font-bold">
+      {isComplete && reward && (
+        <div className="mt-10 rounded-3xl border border-cyan-300/30 bg-gradient-to-br from-cyan-950/80 to-slate-900 p-10 text-center">
+          <Trophy className="mx-auto h-12 w-12 text-cyan-300" />
+
+          <h3 className="mt-6 text-4xl font-bold">
             Mission Complete!
           </h3>
-      
+
           <div className="mt-6 text-7xl">
             {reward.badge}
           </div>
-      
-          <p className="mt-4 text-2xl font-semibold">
+
+          <p className="mt-5 text-2xl font-semibold">
             {reward.title}
           </p>
-      
+
           <p className="mt-2 text-xl font-bold text-cyan-300">
             +{reward.xp} XP Earned
           </p>
-      
-          <p className="mt-5 text-slate-300">
-            Outstanding work! You've completed every observation and earned a new badge.
+
+          <p className="mx-auto mt-6 max-w-xl text-slate-300">
+            Outstanding observation. Your Explorer Passport has been updated.
           </p>
-      
         </div>
       )}
-</div>
+    </div>
   );
 }
