@@ -184,3 +184,13 @@
   background-clip: text;
   color: transparent;
 }
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1.05);
+  }
+
+  to {
+    transform: scale(1.12);
+  }
+}
