@@ -29,7 +29,7 @@ export function MissionHero({
           <img
             src={image}
             alt=""
-            className="h-full w-full scale-105 object-cover"
+            className="h-full w-full scale-105 object-cover animate-[slowZoom_18s_ease-in-out_infinite_alternate]"
           />
         </div>
       ) : (
