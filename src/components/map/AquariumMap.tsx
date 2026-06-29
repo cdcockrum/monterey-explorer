@@ -1,4 +1,4 @@
-import { MapRegion } from "@/components/map/MapRegion";
+import { MapRegion } from "./MapRegion";
 
 type AquariumMapProps = {
   selectedId: string;

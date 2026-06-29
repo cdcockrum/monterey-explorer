@@ -34,6 +34,20 @@ export const Route = createFileRoute("/map")({
 
 function MapPage() {
   const [selectedId, setSelectedId] = useState("sea-otters");
+  const [routeStops, setRouteStops] = useState<string[]>([]);
+
+  function addToRoute(id: string) {
+  setRouteStops((current) => {
+    if (current.includes(id)) return current;
+    return [...current, id];
+    });
+  }
+
+  function removeFromRoute(id: string) {
+  setRouteStops((current) =>
+    current.filter((stop) => stop !== id)
+    );
+  }
 
   const selected = useMemo(
     () => EXHIBITS.find((exhibit) => exhibit.id === selectedId) ?? EXHIBITS[0],
@@ -64,7 +78,11 @@ function MapPage() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(255,255,255,0.08),transparent_30%)]" />
 
             <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-slate-950">
-              <AquariumMap selectedId={selectedId} onSelect={setSelectedId} />
+              <AquariumMap
+              selectedId={selectedId}
+              onSelect={setSelectedId}
+              routeStops={routeStops}
+            />
             </div>
           </section>
 
@@ -114,8 +132,11 @@ function MapPage() {
                   <Sparkles className="h-4 w-4" />
                 </Link>
 
-                <button className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-5 py-3 font-semibold text-white transition hover:border-cyan-300/40">
-                  Navigate Here
+                <button
+                  onClick={() => addToRoute(selected.id)}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-5 py-3 font-semibold text-white transition hover:border-cyan-300/40"
+                >
+                  {routeStops.includes(selected.id) ? "Added to Route" : "Add to Route"}
                   <Compass className="h-4 w-4" />
                 </button>
               </div>
@@ -129,31 +150,72 @@ function MapPage() {
 
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
               <MapPin className="h-6 w-6 text-cyan-300" />
-              <h2 className="mt-4 text-2xl font-bold">Suggested Route</h2>
+
+              <div className="mt-4 flex items-center justify-between gap-4">
+                  <h2 className="text-2xl font-bold">My Route</h2>
+
+                  {routeStops.length > 0 && (
+                    <button
+                      onClick={() => setRouteStops([])}
+                      className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300 transition hover:border-cyan-300 hover:text-white"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+
               <p className="mt-3 leading-7 text-slate-300">
-                Start with Sea Otters, continue to Kelp Forest, then finish at
-                Open Sea.
+                Build your own aquarium route by selecting exhibits.
               </p>
+              {routeStops.length > 0 && (
+                <div className="mt-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-4">
+                  <div className="text-sm font-semibold text-cyan-300">
+                    {routeStops.length} stop{routeStops.length === 1 ? "" : "s"} selected
+                  </div>
+
+                  <div className="mt-1 text-sm text-slate-300">
+                    Estimated time: {routeStops.length * 8 + 10} minutes
+                  </div>
+                </div>
+              )}
 
               <div className="mt-5 space-y-3">
-                {["Sea Otters", "Kelp Forest", "Open Sea"].map(
-                  (stop, index) => (
-                    <div
-                      key={stop}
-                      className="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/70 p-3"
-                    >
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-cyan-300 text-sm font-bold text-slate-950">
-                        {index + 1}
-                      </div>
+                {routeStops.length === 0 ? (
+                  <div className="rounded-2xl border border-dashed border-white/20 p-6 text-center text-slate-400">
+                    Select exhibits to build your route.
+                  </div>
+                ) : (
+                  routeStops.map((id, index) => {
+                    const exhibit = EXHIBITS.find((e) => e.id === id);
 
-                      <div>
-                        <div className="font-semibold">{stop}</div>
-                        <div className="text-sm text-slate-400">
-                          {index === 0 ? "Start here" : `${index * 4 + 2} min walk`}
+                    if (!exhibit) return null;
+
+                    return (
+                      <div
+                        key={exhibit.id}
+                        className="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/70 p-3"
+                      >
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-cyan-300 text-sm font-bold text-slate-950">
+                          {index + 1}
                         </div>
+
+                        <div className="flex-1">
+                          <div className="font-semibold">{exhibit.title}</div>
+
+                          <div className="text-sm text-slate-400">
+                            {index === 0 ? "Start here" : `${index * 4 + 2} min walk`}
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => removeFromRoute(exhibit.id)}
+                          className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300 transition hover:border-cyan-300 hover:text-white"
+                        >
+                          Remove
+                        </button>
                       </div>
-                    </div>
-                  )
+                    );
+                  })
                 )}
               </div>
             </div>
