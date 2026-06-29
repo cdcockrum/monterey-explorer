@@ -11,6 +11,10 @@ import {
   Waves,
 } from "lucide-react";
 import { EXHIBITS } from "@/data/mapData";
+import { MiniFact } from "@/components/map/MiniFact";
+import { InfoCard } from "@/components/map/InfoCard";
+
+
 
 export const Route = createFileRoute("/map")({
   head: () => ({
@@ -364,42 +368,3 @@ function MapRegion({
   );
 }
 
-function MiniFact({
-  icon,
-  label,
-  value,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-4">
-      <div className="flex items-center gap-2 text-cyan-300">
-        {icon}
-        <span className="text-xs font-semibold uppercase tracking-[0.2em]">
-          {label}
-        </span>
-      </div>
-      <p className="mt-2 text-sm leading-6 text-slate-300">{value}</p>
-    </div>
-  );
-}
-
-function InfoCard({
-  icon,
-  title,
-  body,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  body: string;
-}) {
-  return (
-    <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
-      {icon}
-      <h2 className="mt-4 text-2xl font-bold">{title}</h2>
-      <p className="mt-3 leading-7 text-slate-300">{body}</p>
-    </div>
-  );
-}
